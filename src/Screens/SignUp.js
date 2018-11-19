@@ -10,7 +10,7 @@ class SignUp extends React.Component {
                 <Content>
                 <Form>
                     <Item floatingLabel>
-                        <Label>Username</Label>
+                        <Label>Email</Label>
                         <Input />
                     </Item>
                     <Item floatingLabel last>
