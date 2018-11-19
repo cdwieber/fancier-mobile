@@ -1,11 +1,12 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
-import { Loading, Home, SignIn } from '../Screens';
+import { Loading, Home, SignIn, SignUp } from '../Screens';
 
 const AppStack = createStackNavigator({ 
         Home: Home, 
     });
 const AuthStack = createStackNavigator({ 
-    SignIn: SignIn 
+    SignIn: SignIn,
+    SignUp: SignUp
 });
 
 Container = createAppContainer(createSwitchNavigator(
