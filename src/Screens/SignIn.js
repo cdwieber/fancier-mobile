@@ -49,7 +49,7 @@ class SignIn extends React.Component {
                     <Item floatingLabel>
                     <Label>Email</Label>
                     <Input
-                    uppercase={false}
+                    autoCapitalize='none'
                     onChangeText={(text) => this.setState( {email: text})}/>
                     </Item>
                     <Item floatingLabel last>
