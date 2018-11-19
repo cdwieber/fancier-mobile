@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, AsyncStorage } from 'react-native';
 
 class Loading extends React.Component {
     constructor(props) {
@@ -17,9 +17,11 @@ class Loading extends React.Component {
       };
 
     render() {
-        <View style={styles.spinnerContainer}>
-            <ActivityIndicator />
-        </View>
+        return (
+            <View style={styles.spinnerContainer}>
+                <ActivityIndicator />
+            </View>
+        );
     };
 }
 
