@@ -23,11 +23,11 @@ class SignIn extends React.Component {
     }
 
     login = (email, password) => {
-        var payload={
+        let payload={
             "email":this.state.email,
             "password":this.state.password
             }
-        let endpoint = API_ROOT + 'auth/login';
+        const endpoint = API_ROOT + 'auth/login';
 
         axios.post(endpoint, payload)
         .then((response) => {
