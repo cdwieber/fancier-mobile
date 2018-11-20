@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, AsyncStorage } from 'react-native';
-import { Container, Content, Form, Item, Input, Label, Button } from 'native-base';
+import { Text, AsyncStorage, View, ImageBackground, StyleSheet, Image } from 'react-native';
+import { Container, Form, Item, Input, Label, Button } from 'native-base';
+import {Grid, Row} from 'react-native-easy-grid';
 import { API_ROOT } from 'react-native-dotenv';
 import axios from 'axios';
-import Reactotron from 'reactotron-react-native'; 
-
+import Reactotron from 'reactotron-react-native';
 
 class SignIn extends React.Component {
+    //Hide the header for these screens
+    static navigationOptions = {
+        header: null
+      }
+
     constructor(props) {
         super(props);
         state = {
@@ -25,7 +30,6 @@ class SignIn extends React.Component {
     }
 
     login = () => {
-        Reactotron.log("BING BONG!");
         let payload={
              email: this.state.email,
              password: this.state.password
@@ -44,31 +48,60 @@ class SignIn extends React.Component {
     render() {
         return(
             <Container>
-                <Content>
-                <Form>
-                    <Item floatingLabel>
-                    <Label>Email</Label>
-                    <Input
-                    autoCapitalize='none'
-                    onChangeText={(text) => this.setState( {email: text})}/>
-                    </Item>
-                    <Item floatingLabel last>
-                    <Label>Password</Label>
-                    <Input
-                    secureTextEntry={true}
-                    onChangeText={(text) => this.setState( { password: text })}/>
-                    </Item>
-                </Form>
-                <Button block onPress={this.login}>
-                    <Text>Sign In</Text>
-                </Button>
-                <Button block onPress={() => this.props.navigation.navigate('SignUp')}>
-                    <Text>Not a member? Sign up!</Text>
-                </Button>
-                </Content>
+                <ImageBackground source={require('../Images/logo-bg2.jpg')}
+                style={{width: '100%', height: '100%'}}>
+                    <Grid>
+                    <Row>
+                        <View style={styles.logo}>
+                            <Image source={require('../Images/logo.png')} />
+                        </View>
+                    </Row>
+                    <Row>
+                    <View style={styles.form}>
+                        <Form>
+                            <Item floatingLabel>
+                            <Label>Email</Label>
+                            <Input
+                            autoCapitalize='none'
+                            onChangeText={(text) => this.setState( {email: text})}/>
+                            </Item>
+                            <Item floatingLabel last>
+                            <Label>Password</Label>
+                            <Input
+                            secureTextEntry={true}
+                            onChangeText={(text) => this.setState( { password: text })}/>
+                            </Item>
+                        </Form>
+                        <Button block onPress={this.login}>
+                            <Text>Sign In</Text>
+                        </Button>
+                        <Button block onPress={() => this.props.navigation.navigate('SignUp')}>
+                            <Text>Not a member? Sign up!</Text>
+                        </Button>
+                        </View>
+                        </Row>
+                    </Grid>
+                </ImageBackground>
             </Container>
         );
     }
 }
+
+styles = StyleSheet.create({
+    form: {
+        backgroundColor: 'rgba(255,255,255,.8)',
+        margin: 10, 
+        padding: 10,
+        width: '95%',
+        justifyContent: 'space-around',
+        borderRadius: 10,
+    },
+    logo: {
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center'
+    }
+});
 
 export { SignIn };
