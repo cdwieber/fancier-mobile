@@ -48,7 +48,7 @@ class SignIn extends React.Component {
     render() {
         return(
             <Container>
-                <ImageBackground source={require('../Images/logo-bg2.jpg')}
+                <ImageBackground source={require('../Images/login-bg2.png')}
                 style={{width: '100%', height: '100%'}}>
                     <Grid>
                     <Row>
@@ -72,10 +72,10 @@ class SignIn extends React.Component {
                             onChangeText={(text) => this.setState( { password: text })}/>
                             </Item>
                         </Form>
-                        <Button block onPress={this.login}>
+                        <Button block onPress={this.login} style={styles.button}>
                             <Text>Sign In</Text>
                         </Button>
-                        <Button block onPress={() => this.props.navigation.navigate('SignUp')}>
+                        <Button block onPress={() => this.props.navigation.navigate('SignUp')} style={styles.button}>
                             <Text>Not a member? Sign up!</Text>
                         </Button>
                         </View>
@@ -101,6 +101,9 @@ styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
+    },
+    button: {
+        backgroundColor: '#A17F74'
     }
 });
 
