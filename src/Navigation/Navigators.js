@@ -1,10 +1,48 @@
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import { 
+  createSwitchNavigator, 
+  createStackNavigator, 
+  createDrawerNavigator, 
+  createBottomTabNavigator, 
+  createAppContainer,
+  createMaterialTopTabNavigator,
+} from 'react-navigation';
 import { Loading, SignIn, SignUp } from '../Screens';
 import Home from '../Screens/Main/Home';
+import {
+  Bakery,
+  Cinematographers,
+  Floral,
+  Grooming,
+  Music,
+  Photographers,
+  Venues
+} from '../Screens/Vendors';
 
-const AppStack = createStackNavigator({ 
-        Home: Home, 
+const VendorTabs = createMaterialTopTabNavigator({
+  Venues: Venues,
+  Bakery: Bakery,
+  Cinematics: Cinematographers,
+  Floral: Floral,
+  Grooming: Grooming,
+  Music: Music,
+  Photographers: Photographers
+},
+{
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    scrollEnabled: true
+  }
+}
+);
+
+const AppStack = createDrawerNavigator({ 
+        Home: Home,
+        MyWedding: Home,
+        Vendors: VendorTabs,
+        MyProfile: Home,
+        SignOut: Home,
     });
+
 const AuthStack = createStackNavigator({ 
     SignIn: SignIn,
     SignUp: SignUp

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Tab, Tabs, ScrollableTab } from 'native-base';
+import { Container, Header, Tab, Tabs, ScrollableTab, Button } from 'native-base';
+import {DrawerActions, NavigationActions} from 'react-navigation';
 import {
     Bakery,
     Cinematographers,
@@ -11,10 +12,13 @@ import {
 } from '../Vendors';
 
 class Home extends Component {
+
+
+
   render() {
     return (
       <Container>
-        <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
+        {/* <Tabs renderTabBar={()=> <ScrollableTab />} tabBarPosition='bottom'>
           <Tab heading="Bakery">
             <Bakery />
           </Tab>
@@ -36,7 +40,7 @@ class Home extends Component {
           <Tab heading="Venues">
               <Venues />
           </Tab>
-        </Tabs>
+        </Tabs> */}
       </Container>
     );
   }
