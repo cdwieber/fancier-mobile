@@ -2,7 +2,6 @@ import {
   createSwitchNavigator, 
   createStackNavigator, 
   createDrawerNavigator, 
-  createBottomTabNavigator, 
   createAppContainer,
   createMaterialTopTabNavigator,
 } from 'react-navigation';
@@ -29,6 +28,7 @@ const VendorTabs = createMaterialTopTabNavigator({
 },
 {
   tabBarPosition: 'bottom',
+  lazy: true,
   tabBarOptions: {
     scrollEnabled: true
   }
