@@ -1,12 +1,16 @@
+import React from 'react';
+import {Button, Icon} from 'native-base';
 import { 
   createSwitchNavigator, 
   createStackNavigator, 
   createDrawerNavigator, 
   createAppContainer,
   createMaterialTopTabNavigator,
+  DrawerActions
 } from 'react-navigation';
 import { Loading, SignIn, SignUp } from '../Screens';
 import Home from '../Screens/Main/Home';
+import {Notifications} from '../Components/Common';
 import {
   Bakery,
   Cinematographers,
@@ -16,6 +20,7 @@ import {
   Photographers,
   Venues
 } from '../Screens/Vendors';
+
 
 const VendorTabs = createMaterialTopTabNavigator({
   Venues: Venues,
@@ -35,13 +40,25 @@ const VendorTabs = createMaterialTopTabNavigator({
 }
 );
 
-const AppStack = createDrawerNavigator({ 
-        Home: Home,
-        MyWedding: Home,
-        Vendors: VendorTabs,
-        MyProfile: Home,
-        SignOut: Home,
-    });
+
+const AppDrawer = createDrawerNavigator({ 
+    Main: Home,
+    Vendors: VendorTabs
+},
+{
+  navigationOptions: ({ navigation }) => ({
+    title: 'Fancier',
+    headerLeft:<Button transparent onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name='menu' /></Button>,
+    headerRight: <Notifications />
+  }),
+}
+);
+
+const AppStack = createStackNavigator(
+  {
+    Drawer: AppDrawer
+  },
+)
 
 const AuthStack = createStackNavigator({ 
     SignIn: SignIn,

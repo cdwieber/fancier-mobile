@@ -22,7 +22,7 @@ class SignIn extends React.Component {
 
     _storeToken = async (response) => {
         try {
-            await AsyncStorage.setItem('user', JSON.stringify(response.data));
+            await AsyncStorage.setItem('user', JSON.stringify(response.data.access_token));
             this.props.navigation.navigate('AuthLoading');
         } catch {
             console.log('ERROR. Unable to store token.');
