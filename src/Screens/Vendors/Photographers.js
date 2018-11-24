@@ -4,7 +4,7 @@ import VendorTemplate from '../../Components/VendorTemplate';
 class Photographers extends Component {
     render() {
         return(
-            <VendorTemplate type='photographer' />
+            <VendorTemplate type='photography' />
         );
     }
 }

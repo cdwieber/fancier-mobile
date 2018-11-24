@@ -1,39 +1,53 @@
 import React, {Component} from 'react';
-import { Text, AsyncStorage } from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Text, AsyncStorage, ScrollView } from 'react-native';
+import { Container } from 'native-base';
+import VendorItem from '../Components/VendorItem';
 import Reactotron from 'reactotron-react-native';
+import { API_ROOT } from 'react-native-dotenv';
+import axios from 'axios';
 
 
 export default class VendorTemplate extends Component {
-
+    state = {
+        user: '',
+        vendors: []
+      };
     constructor(props) {
         super(props);
-        this.state = {
-          user: ''
-        }
-
-        this.getUser();
       }
 
-    getUser = async () => {
-        let user = '';
-        try {
-          user = await AsyncStorage.getItem('user');
-          this.setState({
-            user: user
-        });
-        } catch (error) {
-          // Error retrieving data
-          console.log(error.message);
-        }
+    async componentDidMount() {
+        let user = await this.getUser();
+
+        user = (JSON.parse(user));
+
+        instance = axios.create({
+            baseURL: API_ROOT + 'vendors/',
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer '+ user}
+          });
+
+        instance.get(this.props.type)
+        .then(response => this.setState({vendors: response.data}));
+    }
+
+    async getUser() {
+        let user = await AsyncStorage.getItem('user');
+        return user;
+    }
+
+    renderVendors() {
+        return this.state.vendors.map(vendor => 
+            <VendorItem key={vendor.id} vendor={vendor} />
+        );
     }
 
     render() {
-        Reactotron.log(this.state);
         return(
             <Container>
-                <Text>{this.state.user}</Text>
-                <Text>HI EVERYBODAY! I'm a {this.props.type} vendor!</Text>
+                <ScrollView>
+                    {this.renderVendors()}
+                </ScrollView>
             </Container>
         );
     }
