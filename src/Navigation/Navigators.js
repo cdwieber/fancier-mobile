@@ -51,6 +51,7 @@ const AppDrawer = createDrawerNavigator({
     headerLeft:<Button transparent onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}><Icon name='menu' /></Button>,
     headerRight: <Notifications />
   }),
+  initialRouteName: Vendors
 }
 );
 
